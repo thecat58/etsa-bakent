@@ -3,9 +3,22 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import *
+
+class Post(models.Model):
+    title = models.CharField(db_column='title', max_length=145)  # Field name made lowercase.
+    body = models.CharField(db_column='body', max_length=145)  # Field name made lowercase.
+    descripcion = models.ManyToManyField( User, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    def __str__(self):
+        return str(self.title)
+    class Meta:
+        managed = True
+        db_table = 'Post'
+
 
 
 class Archivosadjuntos(models.Model):
@@ -14,7 +27,7 @@ class Archivosadjuntos(models.Model):
     materiales = models.ForeignKey('Materiales', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'archivosadjuntos'
 
 
@@ -23,7 +36,7 @@ class Categoriaservicio(models.Model):
     descripcion = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'categoriaservicio'
 
 
@@ -38,7 +51,7 @@ class Citas(models.Model):
     usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'citas'
 
 
@@ -50,7 +63,7 @@ class Comentarios(models.Model):
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'comentarios'
 
 
@@ -59,7 +72,7 @@ class Departamento(models.Model):
     codigo = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'departamento'
 
 
@@ -71,7 +84,7 @@ class Materiales(models.Model):
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'materiales'
 
 
@@ -80,7 +93,7 @@ class Municipio(models.Model):
     departamento = models.ForeignKey(Departamento, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'municipio'
 
 
@@ -90,7 +103,7 @@ class Pagosuscripcion(models.Model):
     usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pagosuscripcion'
 
 
@@ -100,7 +113,7 @@ class Redessociales(models.Model):
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'redessociales'
 
 
@@ -113,7 +126,7 @@ class Servicio(models.Model):
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'servicio'
 
 
@@ -123,7 +136,7 @@ class Taller(models.Model):
     usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'taller'
 
 
@@ -142,5 +155,5 @@ class Usuario(models.Model):
     tipodocumento = models.CharField(db_column='tipoDocumento', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'usuario'
