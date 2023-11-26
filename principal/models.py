@@ -20,7 +20,6 @@ class Post(models.Model):
         db_table = 'Post'
 
 
-
 class Archivosadjuntos(models.Model):
     nombrearchivo = models.CharField(db_column='nombreArchivo', max_length=145)  # Field name made lowercase.
     rutaarchivo = models.CharField(db_column='rutaArchivo', max_length=145, blank=True, null=True)  # Field name made lowercase.
