@@ -6,3 +6,13 @@ class usuarioSerializers(serializers.ModelSerializer):
         model=Usuario
         # fields=('nombre','apellido','genero','correo','contraseña')
         fields='__all__'
+
+class citasSerializers(serializers.ModelSerializers):
+    class Meta:
+        models=Citas
+        fields='__all__'
+
+class TallerSserializers(serializers.Modelserializers):
+    class Meta:
+        models=Taller
+        fields='__all__'

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.response import Response
+from rest_framework.response import Response, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializer import *
@@ -20,7 +20,6 @@ class usuarioViewSet(APIView):
         post = Usuario.objects.all()
         # Serialización de los objetos Cliente en formato JSON
         serializer = usuarioSerializers(post, many=True)
-        
         # Retorna una respuesta con los datos serializados
         return Response(serializer.data)
 
@@ -34,4 +33,17 @@ class usuarioViewSet(APIView):
             # Retorna una respuesta con los datos del cliente creado y un código de estado 201 (CREATED)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # Retorna una respuesta con errores de validación y un código de estado 400 (BAD REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class citasViewSet(APIView):
+    def get(self, request, format=None, *args, **kwargs):
+        post = Citas.objects.all()
+        serializer = citasSerializers(post, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request, format=None):
+        serializer = CitasSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

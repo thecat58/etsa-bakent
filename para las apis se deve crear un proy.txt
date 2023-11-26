@@ -1,0 +1,35 @@
+para las apis se deve crear un proyecto 
+
+C:\Users\usuario\Desktop\entorno>virtualenv init
+C:\Users\usuario\Desktop\entorno>cd C:\Users\usuario\Desktop\entorno\init\Scripts (Ruta desde la carpeta init)
+C:\Users\usuario\Desktop\entorno\init\Scripts>activate
+(init) C:\Users\usuario\Desktop\entorno\init\Scripts>pip install django
+dentro del entorno 
+se instal 
+pip install djangorestframework
+pip install markdown       # Markdown support for the browsable API.
+pip install django-filter
+
+coneccion a base de datos en setting
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pruing',
+        'USER': 'root',
+        'PASSWORD': 'admin12345*',
+        'PORT': '3306',
+        'HOST':'127.0.0.1',
+color en el setings
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+esta es la aplicacion 
+    'principal',
+    'rest_framework',
+
+]
+se deve tener encuenta que si se hace seguridad solo se trae los usuarios y lo que sea de inicio de secion 
