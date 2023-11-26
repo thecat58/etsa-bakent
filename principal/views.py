@@ -1,14 +1,20 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from rest_framework.response import Response, viewsets
+=======
+>>>>>>> 5cf31727af9f3b7ca36536f4856693b348b5ab3c
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from .serializer import *
 from .models import *
-from rest_framework import status
+from rest_framework.decorators import action
 from django.http import Http404
+from rest_framework import viewsets
 
-# Create your views here.
+class postViewSet(viewsets.ModelViewSet):
+    queryset= Post.objects.all()
+    serializers_class=postSerializers
 
+<<<<<<< HEAD
 
 # class  usuarioViewSet(viewsets.ModelViewSet):
 #     queryset=Usuario.objects.all()
@@ -47,3 +53,8 @@ class citasViewSet(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+=======
+    @action(methods=['post'],detail=True)
+    def like_post(self, request, pk):
+        post = self.get_objet()
+>>>>>>> 5cf31727af9f3b7ca36536f4856693b348b5ab3c
