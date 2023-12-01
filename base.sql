@@ -51,6 +51,19 @@ CREATE INDEX `municipio_departamento_id_66f217c1_fk_departamento_id` ON `etsa`.`
 
 
 -- -----------------------------------------------------
+-- Table `etsa`.`tdocumento`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `etsa`.`tdocumento` ;
+
+CREATE TABLE IF NOT EXISTS `etsa`.`tdocumento` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `etsa`.`usuario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `etsa`.`usuario` ;
@@ -64,20 +77,26 @@ CREATE TABLE IF NOT EXISTS `etsa`.`usuario` (
   `genero` VARCHAR(45) NULL DEFAULT NULL,
   `fechaNacimiento` DATE NULL DEFAULT NULL,
   `foto` VARCHAR(45) NULL DEFAULT NULL,
-  `contrato_id` INT NOT NULL,
-  `tpempresario_id` INT NOT NULL,
-  `idcedula` INT NULL DEFAULT NULL,
   `tipoDocumento` VARCHAR(45) NULL DEFAULT NULL,
   `municipio_id` BIGINT NOT NULL,
+  `tdocumento_id` INT NOT NULL,
+  `numerocc` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `usuario_municipio_id_c87e17a6_fk_municipio_id`
     FOREIGN KEY (`municipio_id`)
-    REFERENCES `etsa`.`municipio` (`id`))
+    REFERENCES `etsa`.`municipio` (`id`),
+  CONSTRAINT `fk_usuario_tdocumento1`
+    FOREIGN KEY (`tdocumento_id`)
+    REFERENCES `etsa`.`tdocumento` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE INDEX `usuario_municipio_id_c87e17a6_fk_municipio_id` ON `etsa`.`usuario` (`municipio_id` ASC) VISIBLE;
+
+CREATE INDEX `fk_usuario_tdocumento1_idx` ON `etsa`.`usuario` (`tdocumento_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
