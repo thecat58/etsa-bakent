@@ -5,11 +5,8 @@ from .views  import *
 
 # Crea una instancia del router
 router = routers.DefaultRouter()
-router.register(r'pots', postViewSet),
-router.register(r'citas', CitasViewSet)
-
-
-
+router.register(r'pots', postViewSet, basename='post'),
+router.register(r'citas', CitasViewSet, basename='citas')
 
 
 # Define las rutas

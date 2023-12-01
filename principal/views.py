@@ -1,4 +1,3 @@
-from telnetlib import STATUS
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .serializer import *
@@ -17,7 +16,7 @@ class postViewSet(viewsets.ModelViewSet):
 
     @action(methods=['post'],detail=True)
     def like_post(self, request, pk):
-        post = self.get_objet()
+        Post = self.get_objet()
 
     
 class CitasViewSet(viewsets.ModelViewSet):
@@ -30,6 +29,6 @@ class CitasViewSet(viewsets.ModelViewSet):
         serializer = CitasSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=STATUS.HTTP_201_CREATED)
-        return Response(serializer.errors, status=STATUS.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

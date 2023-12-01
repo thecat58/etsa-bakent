@@ -172,8 +172,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('lugar', models.CharField(blank=True, max_length=45, null=True)),
-                ('agenda_id', models.IntegerField()),
-                ('agenda_taller_id', models.IntegerField()),
                 ('hora', models.TimeField(blank=True, null=True)),
                 ('asunto', models.CharField(blank=True, max_length=160, null=True)),
                 ('taller', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='principal.taller')),

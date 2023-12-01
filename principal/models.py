@@ -42,8 +42,6 @@ class Categoriaservicio(models.Model):
 class Citas(models.Model):
     id = models.IntegerField(primary_key=True)
     lugar = models.CharField(max_length=45, blank=True, null=True)
-    agenda_id = models.IntegerField()
-    agenda_taller_id = models.IntegerField()
     hora = models.TimeField(blank=True, null=True)
     asunto = models.CharField(max_length=160, blank=True, null=True)
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
