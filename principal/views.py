@@ -1,4 +1,3 @@
-from telnetlib import STATUS
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .serializer import *
@@ -17,7 +16,7 @@ class postViewSet(viewsets.ModelViewSet):
 
     @action(methods=['post'],detail=True)
     def like_post(self, request, pk):
-        post = self.get_objet()
+        Post = self.get_objet()
 
     
 class CitasViewSet(viewsets.ModelViewSet):

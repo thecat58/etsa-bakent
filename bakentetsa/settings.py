@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'etsa',
         'USER': 'root',
         'PASSWORD': 'Admin1234*',
-        'PORT': '3306',
+        'PORT': '3307',
         'HOST':'localhost',
     }
 }
