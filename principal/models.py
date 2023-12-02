@@ -8,19 +8,10 @@
 from django.db import models
 from django.contrib.auth.models import *
 
-class Post(models.Model):
-    title = models.CharField(db_column='title', max_length=145)  # Field name made lowercase.
-    body = models.CharField(db_column='body', max_length=145)  # Field name made lowercase.
-    descripcion = models.ManyToManyField( User, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-    def __str__(self):
-        return str(self.title)
-    class Meta:
-        managed = True
-        db_table = 'Post'
 
 
 class Archivosadjuntos(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombrearchivo = models.CharField(db_column='nombreArchivo', max_length=145)  # Field name made lowercase.
     rutaarchivo = models.CharField(db_column='rutaArchivo', max_length=145, blank=True, null=True)  # Field name made lowercase.
     materiales = models.ForeignKey('Materiales', models.DO_NOTHING)
@@ -30,7 +21,10 @@ class Archivosadjuntos(models.Model):
         db_table = 'archivosadjuntos'
 
 
+
+
 class Categoriaservicio(models.Model):
+    id = models.BigAutoField(primary_key=True)
     tipo = models.CharField(max_length=45, blank=True, null=True)
     descripcion = models.CharField(max_length=45, blank=True, null=True)
 
@@ -56,8 +50,8 @@ class Comentarios(models.Model):
     id = models.IntegerField(primary_key=True)
     descripcion = models.CharField(max_length=160)
     puntuacion = models.DecimalField(max_digits=10, decimal_places=0)
-    usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
+    usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
 
     class Meta:
         managed = True
@@ -65,12 +59,15 @@ class Comentarios(models.Model):
 
 
 class Departamento(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     codigo = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = True
         db_table = 'departamento'
+
+
 
 
 class Materiales(models.Model):
@@ -86,6 +83,7 @@ class Materiales(models.Model):
 
 
 class Municipio(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     departamento = models.ForeignKey(Departamento, models.DO_NOTHING)
 
@@ -104,7 +102,20 @@ class Pagosuscripcion(models.Model):
         db_table = 'pagosuscripcion'
 
 
+class Post(models.Model):
+    title = models.CharField(db_column='title', max_length=145)  # Field name made lowercase.
+    body = models.CharField(db_column='body', max_length=145)  # Field name made lowercase.
+    likes = models.ManyToManyField( User, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    def __str__(self):
+        return str(self.title)
+    class Meta:
+        managed = True
+        db_table = 'Post'
+
+
 class Redessociales(models.Model):
+    id = models.BigAutoField(primary_key=True)
     tiporedsocial = models.CharField(db_column='tipoRedSocial', max_length=100)  # Field name made lowercase.
     enlaceredsocial = models.CharField(db_column='enlaceRedSocial', max_length=45)  # Field name made lowercase.
     taller = models.ForeignKey('Taller', models.DO_NOTHING)
@@ -128,6 +139,7 @@ class Servicio(models.Model):
 
 
 class Taller(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     ubicacion = models.CharField(max_length=160, blank=True, null=True)
     usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
@@ -138,6 +150,7 @@ class Taller(models.Model):
 
 
 class Usuario(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
     apellido = models.CharField(max_length=45)
     telefono = models.IntegerField(blank=True, null=True)
@@ -145,11 +158,11 @@ class Usuario(models.Model):
     genero = models.CharField(max_length=45, blank=True, null=True)
     fechanacimiento = models.DateField(db_column='fechaNacimiento', blank=True, null=True)  # Field name made lowercase.
     foto = models.CharField(max_length=45, blank=True, null=True)
-    municipio = models.ForeignKey(Municipio, models.DO_NOTHING)
     contrato_id = models.IntegerField()
     tpempresario_id = models.IntegerField()
     idcedula = models.IntegerField(blank=True, null=True)
     tipodocumento = models.CharField(db_column='tipoDocumento', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    municipio = models.ForeignKey(Municipio, models.DO_NOTHING)
 
     class Meta:
         managed = True

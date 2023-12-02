@@ -8,15 +8,13 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 
 
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer  # Corregido el nombre del atributo
 
-class postViewSet(viewsets.ModelViewSet):
-    queryset= Post.objects.all()
-    serializers_class=postSerializers
-
-
-    @action(methods=['post'],detail=True)
+    @action(methods=['post'], detail=True)
     def like_post(self, request, pk):
-        Post = self.get_objet()
+        post = self.get_object()
 
     
 class CitasViewSet(viewsets.ModelViewSet):
@@ -29,6 +27,6 @@ class CitasViewSet(viewsets.ModelViewSet):
         serializer = CitasSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
