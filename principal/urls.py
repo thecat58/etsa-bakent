@@ -7,9 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'pots', PostViewSet, basename='Post'),
 router.register(r'citas', CitasViewSet, basename='citas')
 
-# Especifica manualmente el `basename` al registrar la vista en el router
-router.register(r'pots', PostViewSet, basename='post')
-router.register(r'citas', CitasViewSet, basename='cita')
+
 
 # Define las rutas
 urlpatterns = [

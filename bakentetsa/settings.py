@@ -39,16 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'principal',
     'rest_framework',
+    'rest_framework.authtoken',
+
 
 ]
 
-REST_FRAMEWORK={
-    'DEFAULT_PERMISSION_CLASSES':[
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Para TokenAuthentication
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Para JWTAuthentication
+        # Otros métodos de autenticación si los necesitas
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES':[
-        'rest_framework.authentication.SessionAuthentication'
-    ]
 }
 
 MIDDLEWARE = [
