@@ -80,6 +80,9 @@ class Taller(models.Model):
     class Meta:
         managed = True
         db_table = 'taller'
+    def __str__(self):
+        txt='{0}'
+        return txt.format(self.nombre)
 
 class Categoriaservicio(models.Model):
     id = models.BigAutoField(primary_key=True)

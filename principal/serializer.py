@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import *
 
-from principal.models import (Post,Citas, Usuario)
+from principal.models import (Post,Citas, Taller, Usuario)
 
 
 
@@ -36,8 +36,17 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 
+class TallerSerializer(serializers.ModelSerializer):
+    dueñp_taller = UserModelSerializer(read_only=True)
 
-class CitasSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Taller
+        fields = '__all__'
+
+class CitasSerializer(serializers.ModelSerializer):
+    usuario_author = UserModelSerializer(read_only=True) 
+    taller_receptor = TallerSerializer(read_only=True)
+
     class Meta:
         model = Citas
         fields = '__all__'
