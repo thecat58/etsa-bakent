@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from django.contrib.auth.models import *
-from .models import *
+
+from principal.models import (Post,Citas, Usuario)
+
 
 
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', 'username')
+        model = Usuario
+        fields = ('id', 'primer_nombre')
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -21,18 +23,18 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ('id','title','body','likes', 'author','like_count','is_liked')
 
     def get_author(self, obj):
-        return obj.author.username
+        return obj.author.primer_nombre
 
     def get_like_count(self, obj):  # Corregido el nombre del método
         return len(obj.likes.all())
 
     def get_is_liked(self, obj):
-        user = self.context['request'].user
-        return True if user in obj.likes.all() else False
+        Usuario = self.context['request'].Usuario
+        return True if Usuario in obj.likes.all() else False
 
 # fin notificaciones
 
-# Los serializadores definen la representación de la API.
+
 
 
 class CitasSerializer(serializers.HyperlinkedModelSerializer):
