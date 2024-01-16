@@ -46,11 +46,20 @@ INSTALLED_APPS = [
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # Para TokenAuthentication
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Para JWTAuthentication
-        # Otros métodos de autenticación si los necesitas
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    
+    'DEFAULT_PERMISSION_CLASSES': [
+  
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
 MIDDLEWARE = [

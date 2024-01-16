@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import *
+
+from principal.views import CitasViewSet, CreateTokenView, PostViewSet, TallerViewSet
+
 
 # Crea una instancia del router
 router = routers.DefaultRouter()
@@ -11,7 +13,10 @@ router.register(r'taller', TallerViewSet, basename='Taller')
 
 
 
+
 # Define las rutas
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('login/',CreateTokenView.as_view()),
+
 ]
