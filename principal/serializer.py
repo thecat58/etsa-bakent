@@ -16,18 +16,26 @@ class AuthTokenSerializer(serializers.Serializer):
     def validate(self, data):
         email = data.get('email')
         password = data.get('password')
-        user = authenticate(
-            request= self._context.get('request'),
-            username = email,
-            password = password
-        )  
+        if email and password:
+            user = authenticate(
+                request= self._context.get('request'),
+                username = email,
+                password = password
+            )  
 
-        if not user:
-            raise serializers.ValidationError('Credenciales incorrectas')
-        
-        data['user'] = user
-        
+            if not user:
+                raise serializers.ValidationError('Credenciales incorrectas')
+            
+            data['user'] = user
+        else:
+            raise serializers.ValidationError('complete los campos')
         return data
+    
+class CusromTokenResponseSerializer(serializers.ModelSerializer):
+    class  Meta:
+        model = Usuario
+        fields='__all__'
+
 
 
 # fon de esa chimbada 
