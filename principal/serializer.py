@@ -3,8 +3,6 @@ from django.contrib.auth.models import *
 
 from principal.models import (Post,Citas, Taller, Usuario)
 
-
-
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
@@ -34,8 +32,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 # fin notificaciones
 
-
-
 class TallerSerializer(serializers.ModelSerializer):
     dueñp_taller = UserModelSerializer(read_only=True)
 
@@ -44,7 +40,6 @@ class TallerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CitasSerializer(serializers.ModelSerializer):
-    usuario_author = UserModelSerializer(read_only=True) 
     taller_receptor = TallerSerializer(read_only=True)
 
     class Meta:
