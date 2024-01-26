@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Post)
 admin.site.register(Taller)
 admin.site.register(Citas)
+admin.site.register(Usuario)

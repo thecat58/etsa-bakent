@@ -9,7 +9,6 @@ router = routers.DefaultRouter()
 router.register(r'pots', PostViewSet, basename='Post'),
 router.register(r'citas', CitasViewSet, basename='Citas')
 router.register(r'taller', TallerViewSet, basename='Taller')
-router.register(r'USURIO', TallerViewSet, basename='Usuario')
 
 
 
@@ -20,6 +19,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('login/',CreateTokenView.as_view()),
     path('citas/',CitasViewSet.as_view),
-    path('usuario/',ususarioViewSet.as_view({'get':'list'})),
+    # path('usuario/',ususarioViewSet.as_view({'get':'list'})),
 
 ]

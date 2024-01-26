@@ -69,8 +69,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 # fin notificaciones
 
-
-
 class TallerSerializer(serializers.ModelSerializer):
     dueñp_taller = UserModelSerializer(read_only=True)
 

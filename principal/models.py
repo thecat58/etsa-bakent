@@ -13,7 +13,7 @@ from principal.manage import AuthUserManager
 
 
 class Departamento(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     codigo = models.CharField(max_length=45, blank=True, null=True)
 
@@ -23,7 +23,7 @@ class Departamento(models.Model):
 
 
 class Municipio(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     departamento_id = models.ForeignKey( Departamento, models.DO_NOTHING,null=True,related_name='departamento_id')
 
@@ -48,7 +48,7 @@ class Usuario(AbstractBaseUser,PermissionsMixin):
     telefono = models.IntegerField(blank=True, null=True)
     genero = models.CharField(max_length=45, blank=True, null=True)
     fechanacimiento = models.DateField(db_column='fechaNacimiento', blank=True, null=True)
-    foto = models.CharField(max_length=45, blank=True, null=True)
+    foto = models.ImageField(upload_to='usuarios', null=True)
     n_identificacion = models.IntegerField(unique=True)
     tipodocumento =  models.ForeignKey(Tdocumento, models.DO_NOTHING,null=True,related_name='tipodocumento')
     municipio =  models.ForeignKey( Municipio, models.DO_NOTHING,null=True,related_name='municipio')
@@ -72,7 +72,7 @@ class Usuario(AbstractBaseUser,PermissionsMixin):
   
 
 class Taller(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     ubicacion = models.CharField(max_length=160, blank=True, null=True)
     dueñp_taller = models.ForeignKey( Usuario, models.DO_NOTHING,null=True,related_name='dueñp_taller')
@@ -85,7 +85,7 @@ class Taller(models.Model):
         return txt.format(self.nombre)
 
 class Categoriaservicio(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     tipo = models.CharField(max_length=45, blank=True, null=True)
     descripcion = models.CharField(max_length=45, blank=True, null=True)
 
@@ -94,7 +94,7 @@ class Categoriaservicio(models.Model):
         db_table = 'categoriaservicio'
 
 class Servicio(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
     descripcion = models.CharField(max_length=45)
     precio = models.CharField(max_length=45)
@@ -106,7 +106,7 @@ class Servicio(models.Model):
         db_table = 'servicio'
 
 class Materiales(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     descripcion = models.CharField(max_length=45, blank=True, null=True)
     fechacarga = models.DateField(db_column='fechaCarga', blank=True, null=True)  # Field name made lowercase.
@@ -128,7 +128,7 @@ class Archivosadjuntos(models.Model):
         db_table = 'archivosadjuntos'
 
 class Redessociales(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     tiporedsocial = models.CharField(db_column='tipoRedSocial', max_length=100)  # Field name made lowercase.
     enlaceredsocial = models.CharField(db_column='enlaceRedSocial', max_length=45)  # Field name made lowercase.
     taller_redsocial = models.ForeignKey( Taller, models.DO_NOTHING,null=True,related_name='taller_redsocial')
@@ -138,7 +138,7 @@ class Redessociales(models.Model):
         db_table = 'redessociales'
 
 class Citas(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     lugar = models.CharField(max_length=45, blank=True, null=True)
     hora = models.TimeField(blank=True, null=True)
     asunto = models.CharField(max_length=160, blank=True, null=True)
@@ -151,7 +151,7 @@ class Citas(models.Model):
 
 
 class Comentarios(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     descripcion = models.CharField(max_length=160)
     puntuacion = models.DecimalField(max_digits=10, decimal_places=0)
     reptor_taller = models.ForeignKey( Taller, models.DO_NOTHING,null=True,related_name='reptor_taller')
@@ -163,7 +163,7 @@ class Comentarios(models.Model):
 
 
 class Pagosuscripcion(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     tipopago = models.CharField(db_column='tipoPago', max_length=45, blank=True, null=True)  # Field name made lowercase.
     usuario_id = models.ForeignKey( Usuario, models.DO_NOTHING,null=True,related_name='usuario_id')
 
