@@ -3,11 +3,15 @@ from django.contrib.auth.models import *
 from django.contrib.auth import get_user_model, authenticate
 
 
-from principal.models import (Post,Citas, Taller, Usuario)
+from principal.models import *
 
 
 # token pedorro
+class CustomTokenResponseSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Usuario
+        fields = '__all__'
 
 class AuthTokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -31,11 +35,32 @@ class AuthTokenSerializer(serializers.Serializer):
             raise serializers.ValidationError('complete los campos')
         return data
     
-class CusromTokenResponseSerializer(serializers.ModelSerializer):
-    class  Meta:
-        model = Usuario
-        fields='__all__'
+# Serializador de Departamento
+class DepartamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Departamento
+        fields = ('nombre',)
 
+class MunicipioSerializer(serializers.ModelSerializer):
+    departamento_id = DepartamentoSerializer(read_only=True)
+
+    class Meta:
+        model = Municipio
+        fields = '__all__'
+
+
+class IdentificacionModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tdocumento
+        fields = ('nombre',)
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    tipodocumento = IdentificacionModelSerializer(read_only=True)
+    municipio = MunicipioSerializer(read_only=True)
+
+    class Meta:
+        model = Usuario
+        fields = '__all__'
 
 
 # fon de esa chimbada 
@@ -44,6 +69,7 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ('id', 'primer_nombre')
+
 
 
 class PostSerializer(serializers.ModelSerializer):

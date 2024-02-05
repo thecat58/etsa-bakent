@@ -20,6 +20,9 @@ class Departamento(models.Model):
     class Meta:
         managed = True
         db_table = 'departamento'
+    def __str__(self):
+        txt='{0}'
+        return txt.format(self.nombre)
 
 
 class Municipio(models.Model):
@@ -30,6 +33,9 @@ class Municipio(models.Model):
     class Meta:
         managed = True
         db_table = 'municipio'
+    def __str__(self):
+        txt='{0}'
+        return txt.format(self.nombre)
 
 class Tdocumento(models.Model):
     nombre = models.CharField(max_length=45)
@@ -38,37 +44,40 @@ class Tdocumento(models.Model):
     class Meta:
         managed = True
         db_table = 'tdocumento'
+    def __str__(self):
+        txt='{0}'
+        return txt.format(self.nombre)
 
-class Usuario(AbstractBaseUser,PermissionsMixin):
+class Usuario(AbstractBaseUser, PermissionsMixin):
     primer_nombre = models.CharField(max_length=45)
     segundo_nombre = models.CharField(max_length=45, blank=True, null=True)
     primer_apellido = models.CharField(max_length=45)
     segundo_apellido = models.CharField(max_length=45, blank=True, null=True)
-    correo = models.CharField(max_length=120,null=True)
+    correo = models.CharField(max_length=120, null=True)
     telefono = models.IntegerField(blank=True, null=True)
     genero = models.CharField(max_length=45, blank=True, null=True)
     fechanacimiento = models.DateField(db_column='fechaNacimiento', blank=True, null=True)
     foto = models.ImageField(upload_to='usuarios', null=True)
     n_identificacion = models.IntegerField(unique=True)
-    tipodocumento =  models.ForeignKey(Tdocumento, models.DO_NOTHING,null=True,related_name='tipodocumento')
-    municipio =  models.ForeignKey( Municipio, models.DO_NOTHING,null=True,related_name='municipio')
+    tipodocumento = models.ForeignKey(Tdocumento, models.DO_NOTHING, null=True, related_name='tipodocumento')
+    municipio = models.ForeignKey(Municipio, models.DO_NOTHING, null=True, related_name='municipio')
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    # Establecer los campos groups y user_permissions como nulos
+
+
     objects = AuthUserManager()
 
-
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['primer_nombre','primer_apellido','n_identificacion']
-    
+    REQUIRED_FIELDS = ['primer_nombre', 'primer_apellido', 'n_identificacion']
 
     class Meta:
         managed = True
         db_table = 'Usuario'
-
   
 
 class Taller(models.Model):

@@ -35,33 +35,26 @@ class CreateTokenView(ObtainAuthToken):
 
         response_data={
             'token':token.key,
-            'user':CusromTokenResponseSerializer(user).data
+            'user':CustomTokenResponseSerializer(user).data
         }
         return Response(response_data)
 
-#
+
 # este es usurio }
-    
-
-# class ususarioViewSet(viewsets.ModelViewSet):
-#     queryset = Usuario.objects.all()
-#     serializer_class = CusromTokenResponseSerializer
-
-#     @api_view(['POST'])
-#     def update_items(request, pk):
-#         Citas = Usuario.objects.get(pk=pk)
-#         data = CusromTokenResponseSerializer(instance=Usuario, data=request.data)
-
-#         if data.is_valid():
-#             data.save()
-#             return Response(data.data)
-#         else:
-#             return Response(status=Stats.HTTP_404_NOT_FOUND)
 
 
-from rest_framework import viewsets
-from django.contrib.auth.base_user import BaseUserManager
- 
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    serializer_class = UsuarioSerializer
+    queryset = Usuario.objects.all()
+
+
+# municipio
+class MunicipioViewSet(viewsets.ModelViewSet):
+    serializer_class = MunicipioSerializer
+    queryset = Municipio.objects.all()
+
+
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
