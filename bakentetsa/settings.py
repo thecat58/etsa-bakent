@@ -34,18 +34,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
+    
     'django_seed',
     'principal',
 ]
+
+# ALLOWED_HOSTS = ["localhost"]
 
 
 REST_FRAMEWORK = {
@@ -66,8 +70,9 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,6 +81,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = (
+
+    'http://localhost:4200',
+    
+)
+CORS_ORIGIN_WHITELIST = (
+
+    'http://localhost:4200',
+)
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -98,7 +112,9 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+
 ROOT_URLCONF = 'bakentetsa.urls'
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
@@ -155,14 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'principal.Usuario'
 
-CORS_ALLOWED_ORIGINS = (
 
-    'http://localhost:4200',
-)
-CORS_ORIGIN_WHITELIST = (
-
-    'http://localhost:4200',
-)
 
 
 # Internationalization

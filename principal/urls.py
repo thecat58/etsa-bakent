@@ -20,4 +20,5 @@ router.register(r'municipio', MunicipioViewSet, basename='Municipio')
 # Define las rutas
 urlpatterns = [
     path('', include(router.urls)),
+     path('login/',CreateTokenView.as_view()),
 ]

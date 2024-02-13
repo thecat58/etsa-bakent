@@ -2,6 +2,7 @@
 from django.core.management.base import BaseCommand
 from django_seed import Seed
 from principal.models import *
+from datetime import datetime
 
 class Command(BaseCommand):
     help = 'Seed the database with specific data'
@@ -1202,6 +1203,24 @@ class Command(BaseCommand):
 
         # Ejecutar el seeder para Departamento y obtener los ID insertados
         inserted_Tdocumento_pks = seeder.execute()
+
+
+        usuario = Usuario.objects.create_superuser(
+            primer_nombre='etsa',
+            segundo_nombre='esta',
+            primer_apellido='carro',
+            segundo_apellido='loro',
+            correo='esta@example.com',
+            telefono='123456789',
+            genero='Masculino',
+            fechanacimiento=datetime(1990, 1, 1),  # Corregir 'datatime' a 'datetime'
+            n_identificacion='1234567890',
+            tipodocumento=Tdocumento.objects.get(id=inserted_departamento_pks[Departamento][1]),
+            municipio=Municipio.objects.get(id=inserted_departamento_pks[Departamento][2]),
+            email='esta@example.com',
+            password='Admin1234*',  # Cambiar esto por la contraseña deseada
+        )
+
 
         # Mensajes de éxito
         self.stdout.write(self.style.SUCCESS(f'Successfully seeded Departamento data. Inserted PKs: {inserted_departamento_pks}'))
