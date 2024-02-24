@@ -82,9 +82,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
 class Taller(models.Model):
     id = models.AutoField(primary_key=True)
+    foto = models.ImageField(upload_to='taller', null=True)
     nombre = models.CharField(max_length=45, blank=True, null=True)
     ubicacion = models.CharField(max_length=160, blank=True, null=True)
-    dueñp_taller = models.ForeignKey( Usuario, models.DO_NOTHING,null=True,related_name='dueñp_taller')
+    usuriotaller = models.ForeignKey( Usuario, models.DO_NOTHING,null=True,related_name='dueñp_taller')
 
     class Meta:
         managed = True

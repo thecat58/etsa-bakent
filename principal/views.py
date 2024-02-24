@@ -21,6 +21,12 @@ from .models import Citas
 
 
 
+from django.shortcuts import render
+
+def inicio(request):
+    return render(request, 'inicio.html')
+
+
 # Create your views here.
 
 # token
@@ -55,7 +61,7 @@ class MunicipioViewSet(viewsets.ModelViewSet):
 # Create your views here.
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer  # Corregido el nombre del atributo
+    serializer_class = PostSerializer  
 
     @action(methods=['post'], detail=True)
     def like_post(self, request, pk):
