@@ -1210,16 +1210,24 @@ class Command(BaseCommand):
             segundo_nombre='esta',
             primer_apellido='carro',
             segundo_apellido='loro',
-            correo='esta@example.com',
+            correo='esta24@gmail.com',
             telefono='123456789',
             genero='Masculino',
             fechanacimiento=datetime(1990, 1, 1),  # Corregir 'datatime' a 'datetime'
-            n_identificacion='1234567890',
+            n_identificacion='1234567893',
             tipodocumento=Tdocumento.objects.get(id=inserted_Tdocumento_pks[Tdocumento][1]),
             municipio=Municipio.objects.get(id=inserted_departamento_pks[Departamento][2]),
-            email='esta@example.com',
+            email='esta24@gmail.com',
             password='Admin1234*',  # Cambiar esto por la contraseña deseada
         )
+        usuario = Usuario.objects.get(pk=1)  # Obtener el usuario con la clave primaria 1
+        taller = Taller.objects.create(
+            foto='d',
+            nombre='d',
+            ubicacion='d',
+            usuriotaller=usuario
+        )
+
 
         
         # Obtener el usuario con la clave primaria 1

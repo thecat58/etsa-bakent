@@ -7,8 +7,26 @@ from principal.models import *
 
 
 # token pedorro
-class CustomTokenResponseSerializer(serializers.ModelSerializer):
+class DepartamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Departamento
+        fields = ('nombre',)
 
+class MunicipioSerializer(serializers.ModelSerializer):
+    departamento_id = DepartamentoSerializer(read_only=True)
+
+    class Meta:
+        model = Municipio
+        fields = '__all__'
+
+
+class IdentificacionModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tdocumento
+        fields = ('nombre',)
+class CustomTokenResponseSerializer(serializers.ModelSerializer):
+    tipodocumento = IdentificacionModelSerializer(read_only=True)
+    municipio = MunicipioSerializer(read_only=True)
     class Meta:
         model = Usuario
         fields = '__all__'
@@ -36,27 +54,10 @@ class AuthTokenSerializer(serializers.Serializer):
         return data
     
 # Serializador de Departamento
-class DepartamentoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Departamento
-        fields = ('nombre',)
 
-class MunicipioSerializer(serializers.ModelSerializer):
-    departamento_id = DepartamentoSerializer(read_only=True)
-
-    class Meta:
-        model = Municipio
-        fields = '__all__'
-
-
-class IdentificacionModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tdocumento
-        fields = ('nombre',)
 
 class UsuarioSerializer(serializers.ModelSerializer):
-    tipodocumento = IdentificacionModelSerializer(read_only=True)
-    municipio = MunicipioSerializer(read_only=True)
+
 
     class Meta:
         model = Usuario

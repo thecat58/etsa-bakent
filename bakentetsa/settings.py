@@ -141,8 +141,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'etsa',
         'USER': 'root',
-        'PASSWORD': 'Admin1234*',
-        'PORT': '3307',
+        'PASSWORD': '',
+        'PORT': '3306',
         'HOST':'localhost',
     }
 }
