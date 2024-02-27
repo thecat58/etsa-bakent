@@ -39,12 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    
     'django_seed',
     'principal',
 ]
@@ -52,22 +50,22 @@ INSTALLED_APPS = [
 # ALLOWED_HOSTS = ["localhost"]
 
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ],
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ],
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.BasicAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#     ],
     
-    # 'DEFAULT_PERMISSION_CLASSES': [
+#     # 'DEFAULT_PERMISSION_CLASSES': [
   
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ]
-}
+#     #     'rest_framework.permissions.IsAuthenticated',
+#     # ]
+# }
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',

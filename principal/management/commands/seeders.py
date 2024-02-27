@@ -1229,6 +1229,16 @@ class Command(BaseCommand):
         )
 
 
+        
+        # Obtener el usuario con la clave primaria 1
+        usuario = Usuario.objects.get(pk=1)  
+        taller = Taller.objects.create(
+            foto='d',
+            nombre='d',
+            ubicacion='d',
+            usuriotaller=usuario
+        )
+
 
         # Mensajes de éxito
         self.stdout.write(self.style.SUCCESS(f'Successfully seeded Departamento data. Inserted PKs: {inserted_departamento_pks}'))

@@ -51,21 +51,21 @@ class Tdocumento(models.Model):
 class Usuario(AbstractBaseUser, PermissionsMixin):
     primer_nombre = models.CharField(max_length=45)
     segundo_nombre = models.CharField(max_length=45, blank=True, null=True)
-    primer_apellido = models.CharField(max_length=45)
+    primer_apellido = models.CharField(max_length=45, null=True)
     segundo_apellido = models.CharField(max_length=45, blank=True, null=True)
     correo = models.CharField(max_length=120, null=True)
     telefono = models.IntegerField(blank=True, null=True)
     genero = models.CharField(max_length=45, blank=True, null=True)
     fechanacimiento = models.DateField(db_column='fechaNacimiento', blank=True, null=True)
     foto = models.ImageField(upload_to='usuarios', null=True)
-    n_identificacion = models.IntegerField(unique=True)
+    n_identificacion = models.IntegerField(unique=True ,null=True)
     tipodocumento = models.ForeignKey(Tdocumento, models.DO_NOTHING, null=True, related_name='tipodocumento')
     municipio = models.ForeignKey(Municipio, models.DO_NOTHING, null=True, related_name='municipio')
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True, null=True)
+    is_staff = models.BooleanField(default=False, null=True)
 
     # Establecer los campos groups y user_permissions como nulos
 
