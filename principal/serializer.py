@@ -57,11 +57,15 @@ class AuthTokenSerializer(serializers.Serializer):
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
-
-
     class Meta:
         model = Usuario
         fields = '__all__'
+
+# Acceso a los metadatos del serializador fuera de la clase del serializador
+print(UsuarioSerializer)
+print(UsuarioSerializer.fields)
+
+
 
 
 # fon de esa chimbada 

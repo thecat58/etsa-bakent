@@ -11,6 +11,8 @@ router.register(r'citas', CitasViewSet, basename='Citas')
 router.register(r'taller', TallerViewSet, basename='Taller')
 router.register(r'usuario', UsuarioViewSet, basename='Usuario')
 router.register(r'municipio', MunicipioViewSet, basename='Municipio')
+router.register(r'documento', TdocumentoViewSet, basename='Tdocumento')
+
 
 
 
