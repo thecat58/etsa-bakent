@@ -9,12 +9,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework import viewsets
 from django.contrib.auth.base_user import BaseUserManager
 from rest_framework import viewsets
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import AllowAny
+# from rest_framework.permissions import AllowAny
 
 from principal.serializer import *
 from .models import Citas
@@ -50,12 +48,19 @@ class CreateTokenView(ObtainAuthToken):
 class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     queryset = Usuario.objects.all()
+  
+
 
 
 # municipio
 class MunicipioViewSet(viewsets.ModelViewSet):
     serializer_class = MunicipioSerializer
     queryset = Municipio.objects.all()
+
+# tipo documento 
+class TdocumentoViewSet(viewsets.ModelViewSet):
+    serializer_class = IdentificacionModelSerializer
+    queryset = Tdocumento.objects.all()
 
 
 # Create your views here.

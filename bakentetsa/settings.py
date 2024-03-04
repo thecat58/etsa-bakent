@@ -49,10 +49,10 @@ INSTALLED_APPS = [
 
 # ALLOWED_HOSTS = ["localhost"]
 
-
+# este es para la autneticacion
 # REST_FRAMEWORK = {
-#     # Use Django's standard `django.contrib.auth` permissions,
-#     # or allow read-only access for unauthenticated users.
+#     Use Django's standard `django.contrib.auth` permissions,
+#     or allow read-only access for unauthenticated users.
 #     'DEFAULT_PERMISSION_CLASSES': [
 #         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 #     ],
@@ -61,10 +61,10 @@ INSTALLED_APPS = [
 #         'rest_framework.authentication.SessionAuthentication',
 #     ],
     
-#     # 'DEFAULT_PERMISSION_CLASSES': [
+#     'DEFAULT_PERMISSION_CLASSES': [
   
-#     #     'rest_framework.permissions.IsAuthenticated',
-#     # ]
+#         'rest_framework.permissions.IsAuthenticated',
+#     ]
 # }
 
 MIDDLEWARE = [
@@ -90,15 +90,16 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CORS_ALLOW_METHODS = [
+    'POST',
     'DELETE',
     'GET',
     'OPTIONS',
     'PATCH',
-    'POST',
     'PUT',
 ]
 
 CORS_ALLOW_HEADERS = [
+    'x-csrftoken',
     'accept',
     'accept-encoding',
     'authorization',
@@ -106,7 +107,7 @@ CORS_ALLOW_HEADERS = [
     'dnt',
     'origin',
     'user-agent',
-    'x-csrftoken',
+
     'x-requested-with',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
