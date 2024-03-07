@@ -23,7 +23,7 @@ class MunicipioSerializer(serializers.ModelSerializer):
 class IdentificacionModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tdocumento
-        fields = ('nombre',)
+        fields = '__all__'
 class CustomTokenResponseSerializer(serializers.ModelSerializer):
     tipodocumento = IdentificacionModelSerializer(read_only=True)
     municipio = MunicipioSerializer(read_only=True)
@@ -61,9 +61,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
         fields = '__all__'
 
-# Acceso a los metadatos del serializador fuera de la clase del serializador
-print(UsuarioSerializer)
-print(UsuarioSerializer.fields)
+
 
 
 
