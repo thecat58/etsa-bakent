@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import *
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.hashers import make_password
 
 
 from principal.models import *
@@ -23,7 +24,7 @@ class MunicipioSerializer(serializers.ModelSerializer):
 class IdentificacionModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tdocumento
-        fields = ('nombre',)
+        fields = ('nombre','id')
 class CustomTokenResponseSerializer(serializers.ModelSerializer):
     tipodocumento = IdentificacionModelSerializer(read_only=True)
     municipio = MunicipioSerializer(read_only=True)
@@ -61,6 +62,16 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
         fields = '__all__'
 
+    def create(self, validated_data):
+        # Asegurarse de que la contraseña se encripta antes de guardar el usuario
+        if 'password' in validated_data:
+            validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
+    def update(self, instance, validated_data):
+        # Asegurarse de que la contraseña se encripta antes de guardar el usuario
+        if 'password' in validated_data:
+            validated_data['password'] = make_password(validated_data['password'])
+        return super().update(instance, validated_data)
 # Acceso a los metadatos del serializador fuera de la clase del serializador
 print(UsuarioSerializer)
 print(UsuarioSerializer.fields)
