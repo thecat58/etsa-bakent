@@ -24,7 +24,7 @@ class MunicipioSerializer(serializers.ModelSerializer):
 class IdentificacionModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tdocumento
-        fields = ('nombre','id')
+        fields = '__all__'
 class CustomTokenResponseSerializer(serializers.ModelSerializer):
     tipodocumento = IdentificacionModelSerializer(read_only=True)
     municipio = MunicipioSerializer(read_only=True)

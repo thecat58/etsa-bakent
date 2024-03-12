@@ -64,8 +64,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
-    is_active = models.BooleanField(default=True)  # Establecer el valor predeterminado en True
-    is_staff = models.BooleanField(default=False, null=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    vededor=models.BooleanField(default=False)
+
 
     # Establecer los campos groups y user_permissions como nulos
 

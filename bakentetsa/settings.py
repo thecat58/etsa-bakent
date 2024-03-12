@@ -87,6 +87,7 @@ CORS_ALLOWED_ORIGINS = (
 CORS_ORIGIN_WHITELIST = (
 
     'http://localhost:4200',
+    'http://localhost:50681/'
 )
 
 CORS_ALLOW_METHODS = [
