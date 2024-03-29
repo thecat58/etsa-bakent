@@ -1222,9 +1222,9 @@ class Command(BaseCommand):
         )
         usuario = Usuario.objects.get(pk=1)  # Obtener el usuario con la clave primaria 1
         taller = Taller.objects.create(
-            foto='d',
-            nombre='d',
-            ubicacion='d',
+            foto='d.jpeg',
+            nombre='fresnos barranquilla',
+            ubicacion='calle 4  12-12',
             usuriotaller=usuario
         )
 
@@ -1233,9 +1233,9 @@ class Command(BaseCommand):
         # Obtener el usuario con la clave primaria 1
         usuario = Usuario.objects.get(pk=1)  
         taller = Taller.objects.create(
-            foto='d',
-            nombre='d',
-            ubicacion='d',
+            foto='d.jpeg',
+            nombre='taller el modelo',
+            ubicacion='calle 4  12-12',
             usuriotaller=usuario
         )
 
