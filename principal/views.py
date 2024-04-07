@@ -53,7 +53,9 @@ class UsuarioViewSet(viewsets.ModelViewSet):
         print("Solicitud recibida:", request.data)
         return super().create(request, *args, **kwargs)
 
-
+class ComentariosViewSet(viewsets.ModelViewSet):
+    serializer_class = ComentariosSerializer
+    queryset = Comentarios.objects.all()
 
 # municipio
 class MunicipioViewSet(viewsets.ModelViewSet):

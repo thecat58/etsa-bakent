@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
+from django.conf.urls.static import static
 
 from principal.views import *
 
@@ -12,6 +13,8 @@ router.register(r'taller', TallerViewSet, basename='Taller')
 router.register(r'usuario', UsuarioViewSet, basename='Usuario')
 router.register(r'municipio', MunicipioViewSet, basename='Municipio')
 router.register(r'documento', TdocumentoViewSet, basename='Tdocumento')
+router.register(r'Comentarios', ComentariosViewSet, basename='Comentarios')
+
 
 
 
@@ -22,5 +25,5 @@ router.register(r'documento', TdocumentoViewSet, basename='Tdocumento')
 # Define las rutas
 urlpatterns = [
     path('', include(router.urls)),
-     path('login/',CreateTokenView.as_view()),
+    path('login/',CreateTokenView.as_view()),
 ]

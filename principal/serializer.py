@@ -68,15 +68,11 @@ class UsuarioSerializer(serializers.ModelSerializer):
             validated_data['password'] = make_password(validated_data['password'])
         return super().create(validated_data)
     def update(self, instance, validated_data):
-        # Asegurarse de que la contraseña se encripta antes de guardar el usuario
-        if 'password' in validated_data:
-            validated_data['password'] = make_password(validated_data['password'])
-        return super().update(instance, validated_data)
-# Acceso a los metadatos del serializador fuera de la clase del serializador
-print(UsuarioSerializer)
-print(UsuarioSerializer.fields)
-
-
+        update_user=super().update(instance,validated_data)
+        update_user.set_password(validated_data['password'])
+        update_user.save()
+        return update_user
+ 
 
 
 # fon de esa chimbada 
@@ -85,6 +81,12 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ('id', 'primer_nombre')
+
+class ComentariosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentarios
+        fields = '__all__'
+
 
 
 
@@ -119,8 +121,15 @@ class TallerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CitasSerializer(serializers.ModelSerializer):
-    taller_receptor = TallerSerializer(read_only=True)
+    taller_reseptor_id = serializers.PrimaryKeyRelatedField(queryset=Taller.objects.all(), source='taller_reseptor')
+    usuario_author_id = serializers.PrimaryKeyRelatedField(queryset=Usuario.objects.all(), source='usuario_author')
 
     class Meta:
         model = Citas
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['taller_reseptor'] = TallerSerializer(instance.taller_reseptor).data
+        representation['usuario_author'] = UserModelSerializer  (instance.usuario_author).data
+        return representation
