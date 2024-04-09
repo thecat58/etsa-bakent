@@ -1,5 +1,5 @@
 asgiref==3.8.1
-Django==5.0.4
+django==4.0.1
 django-cors-headers==4.3.1
 django-seed==0.3.1
 djangorestframework==3.15.1
