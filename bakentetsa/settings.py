@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-x#j*m8z$hst0+y*ik8oxufe!iz$+zv6v&j+^7od_d+xx_$&&#1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -138,7 +138,7 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     'default': {
-   'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'HOST': 'monorail.proxy.rlwy.net',
         'PORT': '53399',
         'NAME': 'railway',
