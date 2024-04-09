@@ -62,7 +62,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     primer_apellido = models.CharField(max_length=45, null=True)
     segundo_apellido = models.CharField(max_length=45, blank=True, null=True)
     correo = models.CharField(max_length=120, null=True)
-    telefono = models.IntegerField(blank=True, null=True)
+    telefono = models.CharField(max_length=20, null=True)
     genero = models.CharField(max_length=45, blank=True, null=True)
     fechanacimiento = models.DateField(
         db_column='fechaNacimiento', blank=True, null=True)
