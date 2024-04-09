@@ -123,12 +123,12 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.str('DB_ENGINE'),
-        'NAME': env.str('DB_NAME'),
-        'USER': env.str('DB_USER'),
-        'PASSWORD':env.str('DB_PASSWORD'),
-        'PORT': env.str('DB_PORT'),
-        'HOST':env.str('DB_HOST'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'QhnyoAhDTHhGaPFDLimaxDEswmtteaKz',
+        'PORT': '18360',
+        'HOST':'monorail.proxy.rlwy.net',
     }
 }
 
