@@ -1,5 +1,5 @@
 asgiref==3.8.1
-django==4.0.1
+django==5.0.4
 django-cors-headers==4.3.1
 django-seed==0.3.1
 djangorestframework==3.15.1
@@ -12,3 +12,4 @@ sqlparse==0.4.4
 toposort==1.10
 typing_extensions==4.11.0
 tzdata==2024.1
+
