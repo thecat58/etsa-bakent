@@ -123,7 +123,7 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': env.str('DB_ENGINE'),
         'NAME': env.str('DB_NAME'),
         'USER': env.str('DB_USER'),
         'PASSWORD':env.str('DB_PASSWORD'),
