@@ -87,7 +87,6 @@ CORS_ALLOWED_ORIGINS = (
 CORS_ORIGIN_WHITELIST = (
 
     'http://localhost:4200',
-    'http://localhost:50681/'
 )
 
 CORS_ALLOW_METHODS = [
@@ -143,11 +142,10 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'root',
         'PASSWORD': 'QhnyoAhDTHhGaPFDLimaxDEswmtteaKz',
-        'PORT': '18360',
-        'HOST':'monorail.proxy.rlwy.net',
+        'PORT': '3306',
+        'HOST':'mysql.railway.internal',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
