@@ -26,9 +26,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-x#j*m8z$hst0+y*ik8oxufe!iz$+zv6v&j+^7od_d+xx_$&&#1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://etsa-bakent-production.up.railway.app']
 
 
 # Application definition
@@ -47,25 +46,6 @@ INSTALLED_APPS = [
     'principal',
 ]
 
-# ALLOWED_HOSTS = ["localhost"]
-
-# este es para la autneticacion
-# REST_FRAMEWORK = {
-#     Use Django's standard `django.contrib.auth` permissions,
-#     or allow read-only access for unauthenticated users.
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ],
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.BasicAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#     ],
-    
-#     'DEFAULT_PERMISSION_CLASSES': [
-  
-#         'rest_framework.permissions.IsAuthenticated',
-#     ]
-# }
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
@@ -80,12 +60,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = (
-
+'https://etsa-bakent-production.up.railway.app'
     'http://localhost:4200',
     
 )
 CORS_ORIGIN_WHITELIST = (
-
+'https://etsa-bakent-production.up.railway.app'
     'http://localhost:4200',
 )
 
@@ -200,4 +180,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app']
 
