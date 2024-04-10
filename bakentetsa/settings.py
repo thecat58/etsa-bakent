@@ -180,5 +180,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app/','http://0.0.0.0:5640/']
+ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app','http://0.0.0.0:5640']
 
