@@ -60,12 +60,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = (
-'https://etsa-bakent-production.up.railway.app'
+
     'http://localhost:4200',
     
 )
 CORS_ORIGIN_WHITELIST = (
-'https://etsa-bakent-production.up.railway.app'
+
     'http://localhost:4200',
 )
 
@@ -180,5 +180,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app']
+ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app/','http://0.0.0.0:5640/']
 
