@@ -17,3 +17,4 @@ toposort==1.10
 typing_extensions==4.11.0
 tzdata==2024.1
 whitenoise==6.6.0
+gunicorn==21.2.0
