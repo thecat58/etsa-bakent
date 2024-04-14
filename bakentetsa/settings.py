@@ -124,18 +124,16 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-
-        # ejemplo:
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'HOST': 'monorail.proxy.rlwy.net',
-    #     'PORT': '53399',
-    #     'NAME': 'railway',
-    #     'USER': 'root',
-    #     'PASSWORD': 'ccEdvheoQiBBYChrKAODejFalIklQWGV',
-
-     
+    'default': {
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
