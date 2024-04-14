@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,18 +45,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'whitenoise.runserver_nostatic',
     'django_seed',
     'principal',
+    
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+   
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -117,15 +124,17 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '53399',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'ccEdvheoQiBBYChrKAODejFalIklQWGV',
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
-    }
+        # ejemplo:
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'HOST': 'monorail.proxy.rlwy.net',
+    #     'PORT': '53399',
+    #     'NAME': 'railway',
+    #     'USER': 'root',
+    #     'PASSWORD': 'ccEdvheoQiBBYChrKAODejFalIklQWGV',
+
+     
 }
 
 # Password validation
@@ -173,6 +182,8 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticsfiles')
+
 
 
 # Default primary key field type
@@ -182,3 +193,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app']
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CSRF_TRUSTED_ORIGINS=['https://*','https://etsa-bakent-production.up.railway.app/']

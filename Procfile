@@ -1,1 +1,1 @@
-web: gunicorn bakentetsa.wsgi
+web: python manage.py collectstatic &&  gunicorn bakentetsa.wsgi

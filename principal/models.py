@@ -12,6 +12,10 @@ from django.utils import timezone
 from principal.manage import AuthUserManager
 from django.dispatch import receiver
 import os
+from django.db import models
+
+class SeederStatus(models.Model):
+    seeds_applied = models.BooleanField(default=False)
 
 
 class Departamento(models.Model):
