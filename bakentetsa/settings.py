@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+import environ
+
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +33,9 @@ SECRET_KEY = 'django-insecure-x#j*m8z$hst0+y*ik8oxufe!iz$+zv6v&j+^7od_d+xx_$&&#1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
+# Inicializar django-environ
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Application definition
 
@@ -125,12 +129,12 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql' ,
-        'NAME': 'railway' ,
-        'USER': 'root',
-        'PASSWORD':'kLFFuiRzwXMOKlstQYfgFffAhcTvYZwa' ,
-        'HOST': 'roundhouse.proxy.rlwy.net' ,
-        'PORT': '51464',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
@@ -189,7 +193,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticsfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app']
+ALLOWED_HOSTS = ['etsa-bakent-production.up.railway.app', '127.0.0.1', 'localhost']
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
