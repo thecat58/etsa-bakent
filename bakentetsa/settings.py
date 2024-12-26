@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import environ
+
 
 load_dotenv()
 
@@ -14,7 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-default-key')  # Valor por defecto para desarrollo
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Solo debe ser True en desarrollo
+DEBUG = True
+
+# Inicializar django-environ
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Application definition
 INSTALLED_APPS = [
@@ -96,8 +102,12 @@ WSGI_APPLICATION = 'bakentetsa.wsgi.application'
 # Database configuration for local development (use SQLite by default)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Usamos SQLite para desarrollo local
-        'NAME': BASE_DIR / 'db.sqlite3',  # Archivo de base de datos local
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
